@@ -6,7 +6,7 @@ const fs = require("fs");
 const card = require("./models/card");
 const app = express();
 const cardsRoute = require("./routes/card-route");
-
+const PORT = process.env.PORT || 3002;
 app.use(cors());
 
 // let jsonData = JSON.parse(fs.readFileSync("./oracle-cards.json", "utf-8"));
@@ -36,6 +36,6 @@ app.use("/api/cards", cardsRoute);
 //   }
 // });
 
-app.listen(3002, () => {
-  console.log("listening on port 3002");
+app.listen(PORT, () => {
+  console.log(`listening on port ${PORT}`);
 });
