@@ -6,6 +6,7 @@ const fs = require("fs");
 const card = require("./models/card");
 const app = express();
 const cardsRoute = require("./routes/card-route");
+const bodyParser = require("body-parser");
 const PORT = process.env.PORT || 3002;
 app.use(cors());
 
@@ -20,6 +21,9 @@ db.on("error", console.error.bind(console, "connection error:"));
 db.once("open", () => {
   console.log("MongoDB Connected without Errors");
 });
+
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
 app.use("/api/cards", cardsRoute);
 
