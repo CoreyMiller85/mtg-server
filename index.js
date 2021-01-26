@@ -7,6 +7,7 @@ const card = require("./models/card");
 const app = express();
 const cardsRoute = require("./routes/card-route");
 const bodyParser = require("body-parser");
+const collection = require("./routes/collection-route");
 const PORT = process.env.PORT || 3002;
 app.use(cors());
 
@@ -26,6 +27,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 app.use("/api/cards", cardsRoute);
+app.use("/api/collection", collection);
 
 // app.post("/importcards", async (req, res) => {
 //   try {
