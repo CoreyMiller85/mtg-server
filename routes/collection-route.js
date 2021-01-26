@@ -13,11 +13,11 @@ router.post("/", async (req, res) => {
     id: req.body.id,
   });
   if (cardData) {
-    console.log("is in database");
+  res.send("is in database");
   } else {
-    console.log("is not in database");
+    res.send("is not in database");
   }
-  res.send(data);
+ =
 });
 
 module.exports = router;
