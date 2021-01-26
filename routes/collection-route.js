@@ -9,15 +9,35 @@ router.get("/", async (req, res) => {
 
 router.post("/", async (req, res) => {
   const cardId = req.body.id;
-  const cardData = collection.find({
-    id: req.body.id,
-  });
-  if (cardData) {
-  res.send("is in database");
-  } else {
-    res.send("is not in database");
-  }
- =
+  await collection.find(
+    {
+      id: cardId,
+    },
+    (err, result) => {
+      if (err) {
+        res.send(err);
+      } else {
+        if (result.length === 0) {
+          collection.create({
+            id: cardId,
+            numberOwned: 1,
+          });
+        } else {
+          const numOwned = result[0].numberOwned;
+          collection.updateOne(
+            { id: cardId },
+            { numberOwned: numOwned + 1 },
+            (err, result) => {
+              if (err) {
+                res.send(err);
+              }
+              res.send(result);
+            }
+          );
+        }
+      }
+    }
+  );
 });
 
 module.exports = router;

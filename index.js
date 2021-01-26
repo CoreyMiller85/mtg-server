@@ -9,6 +9,7 @@ const cardsRoute = require("./routes/card-route");
 const bodyParser = require("body-parser");
 const collection = require("./routes/collection-route");
 const PORT = process.env.PORT || 3002;
+
 app.use(cors());
 
 // let jsonData = JSON.parse(fs.readFileSync("./oracle-cards.json", "utf-8"));
